@@ -1,0 +1,26 @@
+server:
+  port: 8089
+  servlet:
+    context-path: /api
+security:
+  jwt:
+    token:
+      secret: secret,
+      expiration: 3000 # 5 minutes duration by default: 5 minutes * 60 seconds * 1000 miliseconds
+spring:
+
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://ec2-52-73-155-171.compute-1.amazonaws.com:5432/d3jil3jmj6642b
+    username: zcjdmdjnzytnfy
+    password: 62e068a8d8b5c333e8db6ff3d77bcb695a42165e46a8608bd0bcf48c6da81d4c

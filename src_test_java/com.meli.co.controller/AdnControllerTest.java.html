@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdnControllerTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Mutantes (5/04/2022 07:11:35 PM)</a> &gt; <a href="../../index.html" class="el_group">Mutantes</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.meli.co.controller</a> &gt; <span class="el_source">AdnControllerTest.java</span></div><h1>AdnControllerTest.java</h1><pre class="source lang-java linenums">package com.meli.co.controller;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.meli.co.dtos.AdnDto;
+import com.meli.co.service.AdnServices;
+
+@ExtendWith(MockitoExtension.class)
+<span class="fc" id="L16"> class AdnControllerTest {</span>
+
+	@InjectMocks
+	private AdnController adnController;
+	
+	@Mock
+	private AdnServices adnService;
+	
+	@Test
+	 void isMutante() {
+<span class="fc" id="L26">		String[] vector = {&quot;ATGCGA&quot;,&quot;CAGTGC&quot;,&quot;TTATGT&quot;,&quot;AGAAGG&quot;,&quot;CCCCTA&quot;,&quot;TCACTG&quot;};</span>
+<span class="fc" id="L27">		AdnDto adnDto = new AdnDto();</span>
+<span class="fc" id="L28">		adnDto.setDna(vector);</span>
+<span class="fc" id="L29">		when(adnService.transaccion(adnDto)).thenReturn(true);</span>
+		
+<span class="fc" id="L31">		assertNotNull(adnController.isMutante(adnDto));</span>
+<span class="fc" id="L32">	}</span>
+	
+	@Test 
+	void findAll() {
+<span class="fc" id="L36">		assertNotNull(adnController.findAll());</span>
+<span class="fc" id="L37">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Mutantes (5/04/2022 07:11:35 PM)</div></body></html>

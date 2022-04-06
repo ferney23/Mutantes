@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdnServiceTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Mutantes (5/04/2022 07:11:35 PM)</a> &gt; <a href="../../index.html" class="el_group">Mutantes</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.meli.co.service</a> &gt; <span class="el_source">AdnServiceTest.java</span></div><h1>AdnServiceTest.java</h1><pre class="source lang-java linenums">package com.meli.co.service;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.meli.co.dtos.AdnDto;
+import com.meli.co.model.Adn;
+import com.meli.co.repository.AdnRepository;
+
+
+
+@ExtendWith(MockitoExtension.class)
+<span class="fc" id="L21"> class AdnServiceTest {</span>
+
+	@InjectMocks
+	private AdnServices adnService;
+	@Mock
+	private AdnRepository adnRepository;
+	
+	@Test
+	 void isMutante() {	
+<span class="fc" id="L30">		String[] vector = {&quot;ATGCGA&quot;,&quot;CAGTGC&quot;,&quot;TTATGT&quot;,&quot;AGAAGG&quot;,&quot;CCCCTA&quot;,&quot;TCACTG&quot;};</span>
+<span class="fc" id="L31">		assertTrue(adnService.isMutante(vector));</span>
+<span class="fc" id="L32">	}</span>
+	
+	@Test
+	 void existsRegister() {
+<span class="fc" id="L36">		String  vector = &quot;ATGCGA&quot;;</span>
+<span class="fc" id="L37">		assertFalse(adnService.existsRegister(vector));</span>
+<span class="fc" id="L38">	}</span>
+	
+	@Test
+	 void findAll() {
+<span class="fc" id="L42">		assertNotNull(adnService.findAll());</span>
+<span class="fc" id="L43">	}</span>
+	
+	@Test
+	 void save() {
+<span class="fc" id="L47">		String sangre = &quot;ATGCGA&quot;;</span>
+<span class="fc" id="L48">		boolean isMutante = true;</span>
+<span class="fc" id="L49">		Adn adn = new Adn();</span>
+<span class="fc" id="L50">		adn.setId((long) 1);</span>
+<span class="fc" id="L51">		adn.setMutante(false);</span>
+<span class="fc" id="L52">		adn.setName(sangre);</span>
+		
+<span class="fc" id="L54">		adnService.save(sangre, isMutante);</span>
+<span class="fc" id="L55">	}</span>
+	
+	@Test
+	 void saveNull() {
+<span class="fc" id="L59">		String sangre = &quot;ATGCGA&quot;;</span>
+<span class="fc" id="L60">		boolean isMutante = true;</span>
+<span class="fc" id="L61">		Adn adn = new Adn((long) 1,sangre);</span>
+		//adn.setId((long) 1);
+		//adn.setMutante(false);
+		//adn.setName(sangre);
+		
+<span class="fc" id="L66">		adnService.save(sangre, isMutante);</span>
+<span class="fc" id="L67">	}</span>
+	
+	@Test
+	void Transaccion() {
+<span class="fc" id="L71">		String sangre = &quot;ATGCGA&quot;;</span>
+<span class="fc" id="L72">		boolean isMutante = true;</span>
+<span class="fc" id="L73">		String[] vector = {&quot;ATGCGA&quot;,&quot;CAGTGC&quot;,&quot;TTATGT&quot;,&quot;AGAAGG&quot;,&quot;CCCCTA&quot;,&quot;TCACTG&quot;};</span>
+<span class="fc" id="L74">		AdnDto adn = new AdnDto();</span>
+<span class="fc" id="L75">		adn.setDna(vector);</span>
+<span class="fc" id="L76">		assertTrue(adnService.transaccion(adn));</span>
+	
+		;
+<span class="fc" id="L79">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Mutantes (5/04/2022 07:11:35 PM)</div></body></html>

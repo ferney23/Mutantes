@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdnServices.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Mutantes (5/04/2022 07:11:35 PM)</a> &gt; <a href="../../index.html" class="el_group">Mutantes</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.meli.co.service</a> &gt; <span class="el_source">AdnServices.java</span></div><h1>AdnServices.java</h1><pre class="source lang-java linenums">package com.meli.co.service;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.meli.co.dtos.AdnDto;
+import com.meli.co.model.Adn;
+import com.meli.co.repository.AdnRepository;
+
+
+@Service
+<span class="fc" id="L16">public class AdnServices {</span>
+	@Autowired
+	private AdnRepository adnRepository;
+
+	public Map&lt;String,Double&gt; findAll(){
+<span class="fc" id="L21">		Map&lt;String, Double&gt; stadists = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L22">		double humanos  =adnRepository.findAll().size();</span>
+<span class="fc" id="L23">		double mutante = adnRepository.getIsMutante(true);</span>
+<span class="fc" id="L24">		double radioModulos =  mutante/humanos;</span>
+<span class="fc" id="L25">		stadists.put(&quot;count_mutant_dna&quot;,mutante );</span>
+<span class="fc" id="L26">		stadists.put(&quot;count_humanos_dna&quot;,  humanos);</span>
+<span class="fc" id="L27">		stadists.put(&quot;ratio&quot;, radioModulos);</span>
+<span class="fc" id="L28">		return stadists;</span>
+	}
+
+	public boolean transaccion(AdnDto adnDto){
+<span class="fc" id="L32">		String sangre = converterString( adnDto.getDna());</span>
+<span class="fc" id="L33">		boolean isMutante =false;</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">		if (sangre.matches(&quot;[ATCG]+&quot;)) {</span>
+<span class="fc" id="L35">			boolean exists = existsRegister(sangre);</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">			if (!exists) {</span>
+<span class="fc" id="L37">				isMutante = isMutante(adnDto.getDna());</span>
+<span class="fc" id="L38">				save(sangre,isMutante);</span>
+			}
+		}
+<span class="fc" id="L41">		return isMutante;</span>
+	}
+
+
+	public String converterString(String [] sangre) {
+<span class="fc" id="L46">		StringBuilder cadena = new StringBuilder();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		for (int x=0;x&lt;sangre.length;x++){</span>
+<span class="fc" id="L48">			cadena =cadena.append(sangre[x]);</span>
+		}
+<span class="fc" id="L50">		return cadena.toString();</span>
+	}
+
+	public Adn save(String  sangre ,boolean isMutante) {
+<span class="fc" id="L54">		Adn adn = new Adn();</span>
+<span class="fc" id="L55">		adn.setName(sangre);</span>
+<span class="fc" id="L56">		adn.setMutante(isMutante);</span>
+
+<span class="fc" id="L58">		return adnRepository.saveAndFlush(adn);</span>
+	}
+	public boolean existsRegister(String vectorAdn) {
+<span class="fc" id="L61">		Optional&lt;Adn&gt; optionalHumano = adnRepository.findByName(vectorAdn);</span>
+<span class="fc" id="L62">		return optionalHumano.isPresent();</span>
+
+	}
+
+	public boolean isMutante(String[] vectorAdn) {
+
+<span class="fc" id="L68">		byte secuenciasEncuentradas = 0;</span>
+<span class="fc" id="L69">		char []  bldmatrizDiagonal = new char[vectorAdn.length];</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">		for (int i=0; i &lt; vectorAdn.length; i++) {</span>
+<span class="fc" id="L71">			char [] bldmatrizIzquierdaDerecha = new char[vectorAdn.length];</span>
+<span class="fc" id="L72">			char [] bldmatrizArribaAbajo = new char[vectorAdn.length];</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">			if(vectorAdn[i].length()==vectorAdn.length) {</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">				for (int j = 0; j &lt;vectorAdn.length; j ++) {</span>
+
+<span class="fc" id="L76">					bldmatrizArribaAbajo[j]=(vectorAdn[i].charAt (j));	</span>
+<span class="fc" id="L77">					bldmatrizIzquierdaDerecha[j]=(vectorAdn[j].charAt (i));	</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">					if (i==j) {</span>
+<span class="fc" id="L79">						bldmatrizDiagonal[i]=(vectorAdn[i].charAt (j));</span>
+					}
+					
+				}
+<span class="fc" id="L83">				secuenciasEncuentradas+=possibleMutante(bldmatrizArribaAbajo);</span>
+<span class="fc" id="L84">				secuenciasEncuentradas+=possibleMutante(bldmatrizIzquierdaDerecha);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">				if (secuenciasEncuentradas&gt;=2) {</span>
+<span class="fc" id="L86">					break;</span>
+				}	
+			}
+			else {
+<span class="nc" id="L90">				return false;</span>
+			}
+
+		}
+
+<span class="fc" id="L95">		secuenciasEncuentradas+=possibleMutante(bldmatrizDiagonal);</span>
+
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">		return secuenciasEncuentradas&gt;=2;</span>
+	}
+
+	/**
+	 * 
+	 * @param aux
+	 * @return
+	 */
+	private byte possibleMutante(char[] aux ) {
+<span class="fc" id="L106">		char inicial = aux[0];</span>
+<span class="fc" id="L107">		byte contadorNitrogeno = 0;</span>
+<span class="fc" id="L108">		byte posibleMutante =0;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">		for (int x = 1; x &lt;aux.length; x ++) {</span>
+<span class="fc" id="L110">			char secuencia = aux[x];</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">			if (inicial==secuencia) {</span>
+<span class="fc" id="L112">				contadorNitrogeno ++;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">				if (contadorNitrogeno==3) {</span>
+<span class="fc" id="L114">					posibleMutante ++;</span>
+<span class="fc" id="L115">					inicial ='9';</span>
+<span class="fc" id="L116">					contadorNitrogeno=1;</span>
+				}	
+<span class="fc" id="L118">			}else {</span>
+<span class="fc" id="L119">				inicial= secuencia;	</span>
+<span class="fc" id="L120">				contadorNitrogeno= 0;</span>
+			}
+		}
+
+
+<span class="fc" id="L125">		return posibleMutante ;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Mutantes (5/04/2022 07:11:35 PM)</div></body></html>
