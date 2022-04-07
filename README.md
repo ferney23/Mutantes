@@ -6,9 +6,8 @@ El presente desafío se ha desarrollado utilizando el lenguaje de programación 
 - Spring boot
 - Spring data jpa
 - Spring web
-- Jacoco: Para generar los reportes de cobertura de las pruebas unitarias
 - Lombook: Permite reducir el código escrito auto generando getters y setters
-- Swagger: Genera la documentación de APIs RESTful y un sandbox para probar llamadas
+- Swagger: Genera la documentación de APIs 
 - Postman: Permite realizar las pruebas de programador de los end-point
 - Maven: Para la gestión de dependencias y construcción del aplicativo
 
@@ -25,7 +24,7 @@ https://mutantes-rest.herokuapp.com/api/swagger-ui.html#
 
 
 ## Reporte de cobertura
-Para el controlador, los servicios y la persistencia se ha realizado una cobertura del 99% mediante pruebas unitarias como se evidencia en el siguiente reporte de cobertura generado por jacoco:
+Se ha realizado el 90 % de cobertura
 
 
 ## Ejecución
