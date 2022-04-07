@@ -56,6 +56,8 @@ public class AdnController {
 	}
 	@GetMapping("/stats")
 	public ResponseEntity<Map<String,Double>> stats(){
+		
+		
 		return new ResponseEntity<>(adnServices.stats(),HttpStatus.OK);
 	}
 

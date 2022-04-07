@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "5a159307-c37c-464d-8586-1945e86811c0",
+		"name": "MeliMutantes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "estadisticas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mutantes-rest.herokuapp.com/api/stats",
+					"protocol": "https",
+					"host": [
+						"mutantes-rest",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isMutante",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"dna\": [\r\n    \"AAAA\",\"AAAA\",\"GGGG\",\"GGGG\"\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mutantes-rest.herokuapp.com/api/mutant",
+					"protocol": "https",
+					"host": [
+						"mutantes-rest",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
