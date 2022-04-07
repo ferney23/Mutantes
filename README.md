@@ -29,4 +29,5 @@ Para el controlador, los servicios y la persistencia se ha realizado una cobertu
 
 
 ## Ejecución
-En el repositorio encuentra el script de ejecución de peticiones HTTP con Postman el cual tiene la URL configurada del servicio.
+En el repositorio se encuentra la collecion de postanm para la ejecucion de los end point 
+https://github.com/ferney23/Mutantes/blob/main/MeliMutantes.postman_collection.json 
