@@ -33,6 +33,9 @@ https://mutantes-rest.herokuapp.com/api/swagger-ui.html#
 ## Reporte de cobertura
 Se ha realizado el 90 % de cobertura
 
+##Para alguna duda en el siguente documento esta algunos anexos pantallazos de la prueba
+https://github.com/ferney23/Mutantes/blob/main/Examen%20Mercadolibre%20%20-%20Mutantes.docx
+
 
 
 ## Ejecución
