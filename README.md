@@ -1,11 +1,18 @@
 # Mutantes
 
 El presente desafío se ha desarrollado utilizando el lenguaje de programación java y se han tomado las siguientes consideraciones:
+Funcionamineto 
+##Funcionamiento 
+En .JSON enviar un vector de String con el dna a validar 
+Se hace la validacion de que este registro no exista en Bases de datos , si existe retornara un 400 
+Si no existe este registro continura a realizar la validacion de si es mutante 
+Despues de realizada la validacion guardara la informacion del Adn 
+
+Si es mutante retornara un 200 , si no es mutante retornara un 403 
 
 ## Herramientas utilizadas
 - Spring boot
 - Spring data jpa
-- Spring web
 - Lombook: Permite reducir el código escrito auto generando getters y setters
 - Swagger: Genera la documentación de APIs 
 - Postman: Permite realizar las pruebas de programador de los end-point
